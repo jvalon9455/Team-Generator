@@ -36,3 +36,99 @@ const render = require("./lib/htmlRenderer");
 
 const team = [];
 
+const questionPrompt = [
+    {
+        type: "confirm",
+        message: "Would you like to add a team member?",
+        name: "initialQuestion",
+    },
+];
+
+const teamMember = [
+    {
+        type: "confirm",
+        message: "Would you like to add another team member?",
+        name: "teamMember",
+    },
+];
+
+const teamMemberTitle = [
+    {
+        type: "list",
+        message: "Please select the title of the associated member that you would like to add.",
+        choices: ["Manager", "Engineer", "Intern"],
+        name: "teamMemberTitle",
+    },
+];
+
+const managerQuestions = [
+    {
+        type: "input",
+        message: "What is the name of your manager?",
+        name: "managerName"
+    },
+    {
+        type: "input",
+        message: "What is the ID# of your manager?",
+        name: "ID",
+    },
+    {
+        type: "input",
+        message: "What is your managers email address?",
+        name: "email",
+    },
+    {
+        type: "input",
+        message: "What is your managers office number?",
+        name: "officeNumber",
+    }
+];
+
+const engineerQuestions = [
+    {
+        type: "input",
+        message: "What is the name of your engineer?",
+        name: "engineerName"
+    },
+    {
+        type: "input",
+        message: "What is the ID# of your engineer?",
+        name: "ID",
+    },
+    {
+        type: "input",
+        message: "What is your engineer's email address?",
+        name: "email",
+    },
+    {
+        type: "input",
+        message: "What is your engineer's GitHub username?",
+        name: "github",
+    }
+];
+
+const internQuestions = [
+    {
+        type: "input",
+        message: "What is the name of your intern?",
+        name: "internName"
+    },
+    {
+        type: "input",
+        message: "What is the ID# of your intern?",
+        name: "ID",
+    },
+    {
+        type: "input",
+        message: "What is your intern's email address?",
+        name: "email",
+    },
+    {
+        type: "input",
+        message: "What school does your intern attend?",
+        name: "school",
+    }
+];
+
+
+
