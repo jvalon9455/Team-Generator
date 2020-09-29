@@ -9,6 +9,8 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
+const { memberExpression } = require("@babel/types");
+const { endianness } = require("os");
 
 
 // Write code to use inquirer to gather information about the development team members,
@@ -131,4 +133,45 @@ const internQuestions = [
 ];
 
 
+// write function for initial questions
 
+function questions () {
+    inquirer
+    .prompt(questionPrompt)
+    .then(function (data) {
+        if (data.initialQuestion === true) {
+            member();
+        } else {
+            console.log("Add members to your team.")
+            end()
+        }
+    })
+    .catch((err) => {
+        console.log(err);
+    });
+}
+
+// write function to add team members
+
+function addTeamMember () {
+    inquirer
+    .prompt(teamMember)
+    .then(function (data) {
+        if (data.teamMember === true) {
+            member();
+        } else {
+            end()
+        }
+    })
+    .catch((err) => {
+        console.log(err);
+    });
+}
+
+// write function to initialize node js
+function init() {
+    console.log("Generate team here.")
+    questions();
+}
+
+init();
