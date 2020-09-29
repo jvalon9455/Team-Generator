@@ -168,6 +168,25 @@ function addTeamMember () {
     });
 }
 
+// write function to select type of team member user can choose from depending on their title
+
+function memberTitle () {
+    inquirer
+    .prompt(teamMemberTitle)
+    .then(function (data) {
+        if (data.teamMemberTitle === "Manager") {
+            managerQuestions();
+        } else if (data.teamMemberTitle === "Engineer") {
+            engineerQuestions();
+        } else if (data.teamMemberTitle === "Intern") {
+            internQuestions();
+        }
+    })
+    .catch((err) => {
+        console.log(err);
+    });
+}
+
 // write function to initialize node js
 function init() {
     console.log("Generate team here.")
