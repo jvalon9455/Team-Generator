@@ -135,56 +135,87 @@ const internQuestions = [
 
 // write function for initial questions
 
-function questions () {
+function questions() {
     inquirer
-    .prompt(questionPrompt)
-    .then(function (data) {
-        if (data.initialQuestion === true) {
-            member();
-        } else {
-            console.log("Add members to your team.")
-            end()
-        }
-    })
-    .catch((err) => {
-        console.log(err);
-    });
+        .prompt(questionPrompt)
+        .then(function (data) {
+            if (data.initialQuestion === true) {
+                memberTitle();
+            } else {
+                console.log("Add members to your team.")
+                endPrompts()
+            }
+        })
+        .catch((err) => {
+            console.log(err);
+        });
 }
 
 // write function to add team members
 
-function addTeamMember () {
+function addTeamMember() {
     inquirer
-    .prompt(teamMember)
-    .then(function (data) {
-        if (data.teamMember === true) {
-            member();
-        } else {
-            end()
-        }
-    })
-    .catch((err) => {
-        console.log(err);
-    });
+        .prompt(teamMember)
+        .then(function (data) {
+            if (data.teamMember === true) {
+                memberTitle();
+            } else {
+                endPrompts()
+            }
+        })
+        .catch((err) => {
+            console.log(err);
+        });
 }
 
 // write function to select type of team member user can choose from depending on their title
 
-function memberTitle () {
+function memberTitle() {
     inquirer
-    .prompt(teamMemberTitle)
-    .then(function (data) {
-        if (data.teamMemberTitle === "Manager") {
-            managerQuestions();
-        } else if (data.teamMemberTitle === "Engineer") {
-            engineerQuestions();
-        } else if (data.teamMemberTitle === "Intern") {
-            internQuestions();
-        }
-    })
-    .catch((err) => {
-        console.log(err);
-    });
+        .prompt(teamMemberTitle)
+        .then(function (data) {
+            if (data.teamMemberTitle === "Manager") {
+                manager();
+            } else if (data.teamMemberTitle === "Engineer") {
+                engineer();
+            } else if (data.teamMemberTitle === "Intern") {
+                intern();
+            }
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+}
+
+// write different functions for different members
+
+function manager() {
+    inquirer
+        .prompt(managerQuestions)
+        .then(function (data) {
+            var newManager = new Manager(data.managerName, data.ID, data.email, data.officeNumber);
+            team.push(newManager);
+            addTeamMember();
+        });
+}
+function engineer() {
+    inquirer
+        .prompt(engineerQuestions)
+        .then(function (data) {
+            var newEngineer = new Engineer(data.engineerName, data.ID, data.email, data.github);
+            team.push(newEngineer);
+            addTeamMember();
+        });
+}
+
+function intern() {
+    inquirer
+        .prompt(internQuestions)
+        .then(function (data) {
+            var newIntern = new Intern(data.internName, data.ID, data.email, data.school);
+            team.push(newIntern);
+            addTeamMember();
+        });
 }
 
 // write function to initialize node js
@@ -194,3 +225,12 @@ function init() {
 }
 
 init();
+
+// write function to end function
+
+function endPrompts() {
+    fs.writeFile(outputPath, render(team), function (err) {
+        if (err) throw err; {
+        }
+    });
+} 
