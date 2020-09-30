@@ -1,0 +1,5 @@
+/* add color to jumbotron */
+.team-heading {
+    background-color: rgb(24, 45, 134);
+    color: whitesmoke;
+}
