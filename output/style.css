@@ -3,3 +3,12 @@
     background-color: rgb(24, 45, 134);
     color: whitesmoke;
 }
+/* need margins to seperate the cards for clean look */
+.card {
+    margin: 10px;
+    box-shadow: 0 0 10px 2px;
+}
+
+.card-header {
+    background-color: rgb(230, 230, 230);
+}
