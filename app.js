@@ -233,6 +233,6 @@ function endPrompts() {
         if (err){
             console.log(err);
         }
-        console.log("It works");
+        // console.log("It works");
     });
 } 
